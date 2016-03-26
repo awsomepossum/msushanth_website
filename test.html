@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html>
 
+<html>
   <head>
-    <meta charset=utf-8 />
-    <title>Test Page</title>
-    <style>
-      body {
-        font-family: sans-serif;
-      }
-    </style>
+    <title>Led Relay</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <!--my favicon-->
+    <link rel="shortcut icon" type="image/jpg" href="/favicon.jpg" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 
     <script type="text/javascript">
       function closeOnLoad(myLink){
@@ -26,7 +29,11 @@
   </head>
 
   <body>
-    <p><a href="#" onclick="javascript:closeOnLoad('http://76.103.2.244:8080/digital/11/1');"> Click to open popup</a>; it will close automatically after five seconds.</p>
+    <button onclick="javascript:closeOnLoad('http://76.103.2.244:8080/digital/11/1');"> Turn Led On </button>
+    
+    <br>
+
+    <button onclick="javascript:closeOnLoad('http://76.103.2.244:8080/digital/11/0');"> Turn Led Off </button>
   </body>
 
 </html>
