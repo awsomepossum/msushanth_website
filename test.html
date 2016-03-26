@@ -1,12 +1,23 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
-<head>
-<script>
-function closeBrowser(){
-    window.close();
-}
-</script>
-</head>
- <body onload="closeBrowser();">
- </body>
+  <title> test </test>
+
+  <head>
+    <script>
+    (function() {
+      document.getElementById("target").onclick = function() {
+        var wnd = window.open("http://stackoverflow.com");
+        setTimeout(function() {
+          wnd.close();
+        }, 5000);
+        return false;
+      };
+
+    })();
+    </script>
+  </head>
+  
+  <body>
+    <p><a href="#" id="target">Click to open popup</a>; it will close automatically after five seconds.</p>
+
+  </body>
 </html>
