@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Enter the password to view contents"
-AuthUserFile /password/.htpasswds
-Require valid-user
