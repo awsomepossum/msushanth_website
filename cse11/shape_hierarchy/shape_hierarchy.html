@@ -49,14 +49,14 @@
 			<section id="one" class="wrapper style1 special">
 				<div class="inner">
 					<header class="major">
-						<center><h2>Rationals</h2></center>
+						<center><h2>Shape Hierarchy</h2></center>
 						<center><p>Email sushanthmukkamalla@gmail.com for code</p></center>
 					</header>
 
 
 
 					<h3>Demo</br></h3>
-					<center><img src="./cse11/Rationals/Rationals.gif"></center>
+					<center><img src="./cse11/shape_hierarchy/shape_hierarchy.gif"></center>
 					<br><br><br>
 
 
@@ -67,35 +67,83 @@
  /*
   * Name: Sushanth Mukkamalla
   * Login: cs11fazq
-  * Date: November 22, 2015
+  * Date: November 28, 2015
   * File: README
   * Sources of Help: none
   */
 
 Program Description:
 
-  Rational.java:
-    This program defines all the methods used to run the test cases in
-  TestRational.java and EC_TestRational.java. When you create a Rational object
-  you are actually creating a fraction. If you create a blank Rational object,
-  you are actually creating 0/1/ If you create a Rational object passing in
-  one number, you are actually creating (number passed in)/1. If you create a
-  Rational object passing in two numbers, you are actually creating the
-  fraction (num1)/(num2). If the denominator is ever 0, the program will throw
-  an exception so that the program will not exit out and keep running. You can
-  add, subtract, multiply, and divide the Rational objects fractions. The
-  fractions will always be stored in their simplest, reduced form. The
-  numerator can be negative or positive, but the denominator is always
-  positive. You can also get the reciprocal of the number (if the numerator is
-  not 0), round up the fraction into a whole number, or round down the fraction
-  into a whole number.
+  Shape.java:
+    This class defines what makes up the abstract class Shape. It defines
+  the abstract methods to be used in every class that implements Shape. It
+  saves the name of all the Objects that implement Shape.
+
+
+  Point.java:
+    This class defines what makes up a Point and what the program should do
+  with it. It can create a Point, move it, copy it, and create a string
+  representation of it.
+
+
+  CSE11_Line.java:
+    This class defines what makes up a CSE_Line and what the program should do
+  with it. It can create a CSE11_Line, move it, copy it, and create a string
+  representation of it.
+
+
+  Circle.java:
+    This class defines what makes up a Circle and what the program should do
+  with it. It can create a Circle, move it, copy it, and create a string
+  representation of it.
+
+
+  ARectangle.java:
+    This class defines what makes up the abstract class ARectangle. It
+  contains the upperLeft point for the shape in the classes that extend
+  ARectangle. It can create a upperLeftCorner, move it, copy it, and create a
+  string representation of it.
+
+
+  Rectangle.java:
+    This class defines what makes up a Rectangle and what the program should
+  do with it. It can create a Rectangle, copy it, and create a string
+  representation of it.
+
+
+  Square.java:
+    This class defines what makes up a Square and what the program should
+  do with it. It can create a Square, copy it, and create a string
+  representation of it.
+
+
+  Triangle.java:
+    This class defines what makes up a Triangle and what the program should do
+  with it. It can create a Triangle, move it, copy it, and create a string
+  representation of it.
+
+
+  CSE11_Polygon.java:
+    This class defines what makes up a CSE11_Polygon and what the program
+  should do with it. It takes in an array of points and creates a shape out of
+  them by connecting the dots in order. It can create a CSE11_Polygon, move
+  it, copy it, and create a string representation of it.
+
+
+  TestCSE11_Polygon.java:
+    This class defines all the methods that are used to test the CSE11_Polygon
+  program. It creates Points in the correct order to draw the shape
+  appropriately. Then, it passes those points into the CSE11_Polygon
+  constructor through an array so it can create the shape. It tests the copy
+  constructor and displays the string representation of the CSE11_Polygon and
+  all the Points of its verticies.
 						</code>
 					</pre>
 					
 
 
 					<h3>Similar Assignment Instructions</br></h3>
-					<embed src="./cse11/Rationals/PA9.pdf" width="800px" height="1050px" />
+					<embed src="./cse11/shape_hierarchy/PA10.pdf" width="800px" height="1050px" />
 					<br><br><br>
 				</div>
 			</section>
