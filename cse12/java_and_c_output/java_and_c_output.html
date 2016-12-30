@@ -60,24 +60,30 @@
 
 <h3><a name="overview">What to do? </a></h3>
 
-<p>
+<p style="display:inline">
 You will be writing a program in Java and a program in C. You will be required to write functions which display output
 to the user. The functions to implement in the hw1.java file are:
-
-<p class="indent">
-void baseout (long <i>number</i>, long <i>base</i>, PrintStream stream); <br />
-void decout (long <i>number</i>, PrintStream <i>stream</i>);<br />
-void newline (PrintStream <i>stream</i>);<br />
-long writeline (String <i>message</i>, PrintStream <i>stream</i>);<br />
 </p>
 
+<p class="indent" style="display:inline">
+<br />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbspvoid baseout (long <i>number</i>, long <i>base</i>, PrintStream stream); <br />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbspvoid decout (long <i>number</i>, PrintStream <i>stream</i>);<br />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbspvoid newline (PrintStream <i>stream</i>);<br />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsplong writeline (String <i>message</i>, PrintStream <i>stream</i>);<br />
+</p>
+
+<p style="display:inline">
+<br />
 The functions to implement in the hw1.c file are:
 </p>
-<p class="indent">
-void baseout (long number, long base, FILE * stream); <br />
-void decout (unsigned long <i>number</i>, FILE * <i>stream</i>);<br />
-void newline (FILE * <i>stream</i>);<br />
-long writeline (const char * <i>message</i>, FILE * <i>stream</i>);<br />
+
+<p class="indent" style="display:inline">
+<br />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbspvoid baseout (long number, long base, FILE * stream); <br />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbspvoid decout (unsigned long <i>number</i>, FILE * <i>stream</i>);<br />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbspvoid newline (FILE * <i>stream</i>);<br />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsplong writeline (const char * <i>message</i>, FILE * <i>stream</i>);
 </p>
 
 
@@ -125,7 +131,7 @@ digit value, and then displaying the result. This should be implemented by deleg
 Displays a newline character (<i>'\n'</i>) to the filestream <i>stream</i>. You'll want to use fputc. This method shouldn't take
 more than a single line of code to implement.
 
-*Values of <i>stream</i> are expected to be either <i>stdout</i> or <i>stderr</i> in hw1.c (System.out and System.err in hw1.java).
+* Values of <i>stream</i> are expected to be either <i>stdout</i> or <i>stderr</i> in hw1.c (System.out and System.err in hw1.java).
 </code>
 </pre>
 
