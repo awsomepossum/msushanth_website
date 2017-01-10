@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<base href="../../">
+		<title>Sushanth Mukkamalla</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<!--my favicon-->
+		<link rel="shortcut icon" type="image/jpg" href="/favicon.jpg" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+
+	<body class="landing">
+		<base href="../../">
+
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header" class="alt">
+				<h1><a href="index.html">Sushanth Mukkamalla</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="index.html#one">Classes</a></li>
+									<li><a href="index.html#three">Projects</a></li>
+									<li><a href="index.html#five">Work Experience</a></li>
+									<!--<li><a href="interface/arduino_server.html">Arduino Server</a></li>-->
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+
+
+
+			<!-- Classes Title -->
+			<section id="one" class="wrapper style1 special">
+				<div class="inner">
+					<header class="major">
+						<center><h2>Java and C: Output</h2></center>
+						<center><p>Email sushanthmukkamalla@gmail.com for code</p></center>
+					</header>
+
+
+<div class="wrapper" align="left">
+
+<h2 class="center" align="center">Assignment Instructions</h2>
+
+<h3><a name="overview">What to do? </a></h3>
+
+<p style="display:inline">
+You will be writing a program in Java and a program in C. You will be required to write functions which display output
+to the user. The functions to implement in the hw1.java file are:
+</p>
+
+<p class="indent" style="display:inline">
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void baseout (long <i>number</i>, long <i>base</i>, PrintStream stream); <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void decout (long <i>number</i>, PrintStream <i>stream</i>);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void newline (PrintStream <i>stream</i>);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long writeline (String <i>message</i>, PrintStream <i>stream</i>);<br />
+</p>
+
+<p style="display:inline">
+<br />
+The functions to implement in the hw1.c file are:
+</p>
+
+<p class="indent" style="display:inline">
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void baseout (long number, long base, FILE * stream); <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void decout (unsigned long <i>number</i>, FILE * <i>stream</i>);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void newline (FILE * <i>stream</i>);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long writeline (const char * <i>message</i>, FILE * <i>stream</i>);
+</p>
+
+
+
+
+<hr>
+<h3><a name="features">Function Descriptions</a></h3>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">baseout:</h2>
+
+The baseout function takes the long integer <i>number</i> provided by the user, converts it to the <i>base</i> that is passed in,
+and displays it to the filestream <i>stream</i>. This requires separating the <i>number</i> into individual characters, converting
+each character into its digit value, and then displaying the result. The algorithm will be explained fully in class.
+The key to writing this method is knowing that modding a number by its base will return one digit, and dividing a
+number by its base will remove that digit.  You may want to use a loop.
+
+* Values of <i>number</i> are expected to be any positive integer.
+* Values of <i>base</i> are expected to be any positive integer.
+* Values of <i>stream</i> are expected to be either <i>stdout</i> or <i>stderr</i> in hw1.c ( System.out and System.err in hw1.java ).
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">decout:</h2>
+
+The decout function takes the long integer <i>number</i> provided by the user and displays it to the filestream <i>stream</i>
+as an integer. This requires separating the <i>number</i> into individual characters, converting each character into its
+digit value, and then displaying the result. This should be implemented by delegating to baseout.
+
+* Values of <i>number</i> are expected to be any positive integer.
+* Values of <i>stream</i> are expected to be either <i>stdout</i> or <i>stderr</i> in hw1.c (System.out and System.err in hw1.java).
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">newline:</h2>
+
+Displays a newline character (<i>'\n'</i>) to the filestream <i>stream</i>. You'll want to use fputc. This method shouldn't take
+more than a single line of code to implement.
+
+* Values of <i>stream</i> are expected to be either <i>stdout</i> or <i>stderr</i> in hw1.c (System.out and System.err in hw1.java).
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">writeline:</h2>
+
+Displays the string <i>message</i> to the user via the filestream <i>stream</i>.
+This method should be implemented using a loop making calls to fputc.
+
+* Values of <i>message</i> are expected to be a NULL terminated character arrays.
+* Values of <i>stream</i> are expected to be either <i>stdout</i> or <i>stderr</i> in hw1.c (System.out and System.err in hw1.java).
+</code>
+</pre>
+
+
+
+
+<hr>
+<h3><a name="benefits">Implementation Restrictions </a></h3>
+
+<p>
+To implement these functions, you may not make calls to ANY functions you did not author except for <i>fputc</i>. You may call on the String methods <i>charAt</i> and <i>length</i> for hw1.java. <i>fputc</i> is a built-in method in the C library, but it is not built-in in Java.  However, it has been implemented for you in hw1.java.  For more information about <i>fputc</i>, refer to the documentation for it: <a href="http://www.cplusplus.com/reference/cstdio/fputc/">cplusplus</a> or look at the <i>man</i> page by typing <b>man fputc</b> into the command prompt or into Google.  If you don't remember how <i>charAt</i> or <i>length</i> works, here is a link to the API: <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">API for String class</a>
+</p>
+
+</div>
+
+
+
+
+
+
+				</div>
+			</section>
+
+
+
+
+
+
+
+
+
+
+			<!-- Footer -->
+			<!--
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</footer>
+			-->
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
