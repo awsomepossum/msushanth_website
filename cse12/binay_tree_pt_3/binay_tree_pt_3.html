@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<base href="../../">
+		<title>Sushanth Mukkamalla</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<!--my favicon-->
+		<link rel="shortcut icon" type="image/jpg" href="/favicon.jpg" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+
+	<body class="landing">
+		<base href="../../">
+
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header" class="alt">
+				<h1><a href="index.html">Sushanth Mukkamalla</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="index.html#one">Classes</a></li>
+									<li><a href="index.html#three">Projects</a></li>
+									<li><a href="index.html#five">Work Experience</a></li>
+									<!--<li><a href="interface/arduino_server.html">Arduino Server</a></li>-->
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+
+
+
+			<!-- Classes Title -->
+			<section id="one" class="wrapper style1 special">
+				<div class="inner">
+					<header class="major">
+						<center><h2>Self-Balancing Binary Tree pt. 3</h2></center>
+						<center><p>Email sushanthmukkamalla@gmail.com for code</p></center>
+					</header>
+
+
+<div class="wrapper" align="left">
+
+<h2 class="center" align="center">Assignment Instructions</h2>
+
+<h3><a name="overview">What to do? </a></h3>
+
+<p style="display:inline">
+In this assignment, you are to implement a binary tree data structure to use the "template" feature of C++.
+<br />
+<br />
+Your <b>Tree.c</b> code will implement a binary tree similar to that in hw8, but you will implement the binary tree as a binary tree on disk. You are to rewrite Driver.c to allow for input commands to come from an ASCII file or via the keyboard by default.
+<br />
+<br />
+Your <b>Driver</b> program will work like the sample driver program on-line. You will need to complete the definition for the UCSDStudent class in your <b>Driver.h</b>.
+</p>
+
+<p style="display:inline">
+<br />
+<br />
+The TNode methods to write in <b>Tree.c</b>:
+</p>
+
+<p class="indent" style="display:inline">
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TNode (const offset &amp; <i>position</i>, fstream * <i>fio</i>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TNode (Whatever &amp; <i>element</i>, fstream * <i>fio</i>, long &amp; <i>occupancy</i>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned long Insert (Whatever &amp; <i>element</i>, fstream * <i>fio</i>, long &amp; <i>occupancy</i>, offset &amp; <i>PositionInParent</i>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void Read (const offset &amp; <i>position</i>, fstream * <i>fio</i>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned long Remove (TNode&lt;Whatever&gt; &amp; <i>elementTNode</i>, fstream * <i>fio</i>, long &amp; <i>occupancy</i>, offset &amp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>PositionInParent</i>, long <i>fromSHB</i>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void ReplaceAndRemoveMin (TNode&lt;Whatever&gt; &amp; <i>targetTNode</i>, fstream * <i>fio</i>, offset &amp; <i>PositionInParent</i>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void SetHeightAndBalance (fstream * <i>fio</i>, offset &amp; <i>PositionInParent</i>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void Write (fstream * <i>fio</i>) const<br/>
+</p>
+
+<p style="display:inline">
+<br />
+The Tree methods to write in <b>Tree.c</b>:
+</p>
+
+<p class="indent" style="display:inline">
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tree (const char * <i>datafile</i>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~Tree (void)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long GetCost (void)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long GetOperation (void)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void IncrementCost (void)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void IncrementOperation (void)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned long Insert (Whatever &amp; <i>element</i>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned long Lookup (Whatever &amp; <i>element</i>) const<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned long Remove (Whatever &amp; <i>element</i>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void ResetRoot (void)<br/>
+</p>
+
+
+
+
+<hr>
+<h3><a name="features">Function Descriptions</a></h3>
+
+<b><i>Note:</i></b> The non-constant reference parameters (noted in <span style="color: #00008B;">blue</span> in Function Descriptions) are potentially updated within the body of that method.
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">TNode Constructor (for the root TNode):</h2>
+
+Called when creating the root TNode.
+
+* Values of <i>element</i> are expected to be the data to be stored in the TNode. They must be of the same type as the rest
+&nbsp;&nbsp;of the objects present in the tree.
+* Values of <i>theTree</i> are expected to be a reference to the empty Tree where the root TNode is about to be created.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">TNode Constructor (for all other TNodes):</h2>
+
+Called when creating any other TNodes.
+
+* Values of <i>element</i> are expected to be the data to be stored in the TNode. They must be of the same type as the rest
+&nbsp;&nbsp;of the objects present in the tree.
+* Values of <i>parentTNode</i> are expected to be a reference to the parent of the TNode about to be created.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">TNode Destructor:</h2>
+
+Called when deallocating a TNode.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">delete_AllTNodes:</h2>
+
+Performs a post-order traversal through the Tree deleting each TNode.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">ReplaceAndRemoveMin:</h2>
+
+Called when removing a TNode with 2 children, replaces that TNode with the minimum TNode in its right subtree to
+maintain the Tree structure.
+
+* Values of <span style="color: #00008B;"><i>targetTNode</i></span> are expected to be a reference to the TNode to remove that has 2 children.
+* Values of <span style="color: #00008B;"><i>PointerInParent</i></span> are expected to a reference to the TNode pointer in the parent TNode used to get to the
+&nbsp;&nbsp;current TNode.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">TNode's Remove:</h2>
+
+Removes the matching data from the binary tree. Returns true or false indicating success of removal. 
+
+* Values of <span style="color: #00008B;"><i>elementTNode</i></span> are expected to be a reference to the TNode containing the data that identifies the element
+&nbsp;&nbsp;to remove.
+* Values of <span style="color: #00008B;"><i>PointerInParent</i></span> are expected to a reference to the TNode pointer in the parent TNode used to get to the
+&nbsp;&nbsp;current TNode.
+* Values of <i>fromSHB</i> are expected to be true or false, keeping track of whether or not <i>Remove</i> was called from
+&nbsp;&nbsp;<i>SetHeightAndBalance</i> so that <i>Remove</i> can determine whether or not to call <i>SetHeightAndBalance</i>.</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">SetHeightAndBalance:</h2>
+
+Updates the height and balance of the current TNode.
+
+* Values of <span style="color: #00008B;"<i>PointerInParent</i></span> are expected to be a reference to the TNode pointer in the parent TNode used to get to
+&nbsp;&nbsp;the current TNode.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">TNode's Insert:</h2>
+
+Inserts an element into the binary tree. Returns true or false indicating success of insertion. 
+
+* Values of <i>element</i> are expected to be the data to be stored in the TNode. They must be of the same type as the rest
+&nbsp;&nbsp;of the objects present in the tree.</li>
+* Values of <span style="color: #00008B;"<i>PointerInParent</i></span> are expected to be a reference to the TNode pointer in the parent TNode used to get to
+&nbsp;&nbsp;the current TNode.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">Tree's Insert:</h2>
+
+Inserts an element into the binary tree. Inserts at the root TNode if Tree is empty, otherwise delegates to <i>TNode's</i>
+<i>Insert</i>. Returns true or false indicating success of insertion. 
+
+* Values of <i>element</i> are expected to be the data stored in the TNode. They must be of the same type as the rest of the
+&nbsp;&nbsp;objects present in the tree.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">Tree's Lookup:</h2>
+
+Searches for an element in the Tree. Delegates to <i>TNode's Lookup</i> when implemented recursively. Returns true or false
+indicating success of look up. 
+
+* Values of <span style="color: #00008B;"><i>element</i></span> are expected to be the data stored in the TNode. They must be of the same type as the rest of
+&nbsp;&nbsp;the objects present in the tree.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">Tree's Remove:</h2>
+
+Removes an element from the Tree. Delegates to <i>TNode's Remove</i> when Tree is not empty. Returns true or false indicating
+success of removal. 
+
+* Values of <span style="color: #00008B;"><i>element</i></span> are expected to be the data stored in the TNode. They must be of the same type as the rest of
+&nbsp;&nbsp;the objects present in the tree.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">Tree Destructor:</h2>
+
+Deallocates memory associated with the Tree.
+</code>
+</pre>
+
+
+
+
+<hr>
+<h3><a name="benefits">Implementation Restrictions </a></h3>
+
+<p>
+* All data stored within the SymTab (and thus stored in the Tree and TNode) must be "flat", which means that
+&nbsp;&nbsp;&nbsp;there are no pointer fields within objects of classes to go into the SymTab.
+<br />
+* <i>TNode's Insert</i> and <i>TNode's Remove</i> should be implemented via recursion.
+<br />
+* <i>TNode's Lookup</i> can be either loop-based or recursive.
+<br />
+* "structs" are not to be defined in .h files - all should be "classes".
+<br />
+* Public access to data fields in classes defined in the .h files are not allowed.
+</p>
+
+</div>
+
+
+
+
+
+
+				</div>
+			</section>
+
+
+
+
+
+
+
+
+
+
+			<!-- Footer -->
+			<!--
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</footer>
+			-->
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
