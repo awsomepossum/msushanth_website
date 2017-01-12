@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<base href="../../">
+		<title>Sushanth Mukkamalla</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<!--my favicon-->
+		<link rel="shortcut icon" type="image/jpg" href="/favicon.jpg" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+
+	<body class="landing">
+		<base href="../../">
+
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header" class="alt">
+				<h1><a href="index.html">Sushanth Mukkamalla</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="index.html#one">Classes</a></li>
+									<li><a href="index.html#three">Projects</a></li>
+									<li><a href="index.html#five">Work Experience</a></li>
+									<!--<li><a href="interface/arduino_server.html">Arduino Server</a></li>-->
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+
+
+
+			<!-- Classes Title -->
+			<section id="one" class="wrapper style1 special">
+				<div class="inner">
+					<header class="major">
+						<center><h2>my_LS</h2></center>
+						<center><p>Email sushanthmukkamalla@gmail.com for code</p></center>
+					</header>
+
+
+
+					<h3>Demo</br></h3>
+					<center><img src="./images/penguin_nyan.gif"></center>
+					<br><br><br>
+
+
+
+					<hr>
+					<h3><a name="features">README</a></h3>
+<pre align="left">
+	<code>
+<h2 style="display:inline">Description:</h2>
+
+This assignment further explores OpenMP, an API that supports
+multi-platform chared memory multi-threading with minimal effort. We will
+compare the runtime of the serial implementation and the parallel version.
+The algorithms we are writing are numOfFactors. There will be a serial
+version and a parallel version. The parallel version will be identical to the
+corresponding serial version, but with added OpenMP pragmas. This program
+will take a number as input and loop thru the range [lo, hi) and look to see
+how many times that number is evenly divisible by the numbers in the range.
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">How to Compile:</h2>
+
+To compile this program, go to the directory containing the source files
+for pamt2 (which should also include the Makefile) and type "make".
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">How to Run:</h2>
+
+To run this program, type the executable name followed by a number (or
+group of numbers separated by spaces).
+Example:
+        [cs30xxxx@ieng6-201]:pamt2:517$ ./pamt2 1234567  
+        [cs30xxxx@ieng6-201]:pamt2:518$ ./pamt2 1234567 7654321 13579 97531
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">Normal Output:</h2>
+
+Normal output is printed to stdout. An example of normal output would be
+the following:
+        [cs30xxxx@ieng6-201]:pamt2:540$ ./pamt2 9999999  
+
+        Calculating number of factors for 9999999 with sequential numOfFactors()
+        [be patient with large values]
+        9999999 is not prime
+        Number of factors: 12
+        Completed in 0.270611 sec
+
+        Calculating number of factors for 9999999 with parallel numOfFactors()
+        [be less patient]
+        Num of threads = 8
+        9999999 is not prime
+        Number of factors: 12
+        Completed in 0.061751 sec
+
+        *** numOfFactors Speed-up: 4.382328 ***
+        
+
+        [cs30xxxx@ieng6-201]:pamt2:541$ ./pamt2 123 456
+
+        Calculating number of factors for 123 with sequential numOfFactors()
+        [be patient with large values]
+        123 is not prime
+        Number of factors: 4
+        Completed in 0.000004 sec
+
+        Calculating number of factors for 123 with parallel numOfFactors()
+        [be less patient]
+        Num of threads = 8
+        123 is not prime
+        Number of factors: 4
+        Completed in 0.001502 sec
+
+        *** numOfFactors Speed-up: 0.002825 ***
+
+
+        Calculating number of factors for 456 with sequential numOfFactors()
+        [be patient with large values]
+        456 is not prime
+        Number of factors: 16
+        Completed in 0.000011 sec
+
+        Calculating number of factors for 456 with parallel numOfFactors()
+        [be less patient]
+        Num of threads = 8
+        456 is not prime
+        Number of factors: 16
+        Completed in 0.002301 sec
+
+        *** numOfFactors Speed-up: 0.004743 ***
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">Abnormal Output:</h2>
+
+Abnormal output is printed to stderr. This can occur if a number being
+passed in is too large or not a number.
+        [cs30xanm@ieng6-201]:pamt2:538$ ./pamt2 99999999999999999999999999999
+
+        Skipping 99999999999999999999999999999
+        num should be less than or equal to 8589934592
+
+
+        [cs30xanm@ieng6-201]:pamt2:539$ ./pamt2 99999999a                    
+
+        Skipping 99999999a
+        not a valid long long int
+</code>
+</pre>
+
+
+<pre align="left">
+	<code>
+<h2 style="display:inline">Testing:</h2>
+
+This program was tested using the sample pamt2test executable that was
+provided. Both programs were run with the same input and their outputs were
+inspected to see if they were different.
+Running this code:
+        ~/../public/pamt2test 123 456 789 >&amp; REFSOL
+        ./pamt2 123 456 789 >&amp; MYSOL
+        diff -c MYSOL REFSOL
+will redirect the output of pamt2test to REFSOL and pamt2 to MYSOL. Then we
+will compare the two output files using the diff command. If the two output
+are the same, then it will indicate that there are no differences. We should
+ignore the time ti took to complete each method and the speed up times since
+they will differ every time we run this program.
+</code>
+</pre>
+
+
+
+					<hr>
+					<h3>Assignment Instructions</br></h3>
+					<embed src="./cse30/my_LS/pa4.pdf" width="800px" height="1050px" />
+					<br><br><br>
+				</div>
+			</section>
+
+
+
+
+
+
+
+
+
+
+			<!-- Footer -->
+			<!--
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</footer>
+			-->
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
