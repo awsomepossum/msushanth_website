@@ -199,8 +199,8 @@ assembly modules worked properly.
 Both programs were run with the same input and their outputs were inspected
 to see if they were different.
 Running this code:
-        ~/../public/pa1test 4 35 32 33 >& REFSOL
-        ./pa1 4 35 32 33 >& MYSOL
+        ~/../public/pa1test 4 35 32 33 >&amp; REFSOL
+        ./pa1 4 35 32 33 >&amp; MYSOL
         diff -c REFSOL MYSOL
 will redirect the output of pa1test to REFSOL and pa1 to MYSOL. Then it will
 compate the two output files using the diff command. If the two outputs are
