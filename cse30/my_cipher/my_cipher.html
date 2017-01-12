@@ -67,14 +67,16 @@
 	<code>
 <h2 style="display:inline">Description:</h2>
 
-This assignment further explores OpenMP, an API that supports
-multi-platform chared memory multi-threading with minimal effort. We will
-compare the runtime of the serial implementation and the parallel version.
-The algorithms we are writing are numOfFactors. There will be a serial
-version and a parallel version. The parallel version will be identical to the
-corresponding serial version, but with added OpenMP pragmas. This program
-will take a number as input and loop thru the range [lo, hi) and look to see
-how many times that number is evenly divisible by the numbers in the range.
+This propgram will encrypt/decrypt user input from stdin and output the
+encrypted/decrypted message to stdout. The program will ask the user to enter
+a passphrase of at least 8 characters, two 32-bit crypto keys, and a rotation
+key in the range [-63, +63]. The program will XOR the first 8 characters of the
+passphrase and the two 32-bit crypto keys to form a 64-bit crypto mask. This
+mask will be used to XOR the data in 8 byte chunks (two 32-bit register
+operations per 8 byte chunk) plus individual single byte masks for the trailing
+bytes. With each 8 bytes of data encrypted with the 64-bit mask, the mask will
+be rotated according to the rotation key value (rotating left if the rotation
+key is negative and rotating right if the rotation key is positive).
 </code>
 </pre>
 
@@ -84,7 +86,7 @@ how many times that number is evenly divisible by the numbers in the range.
 <h2 style="display:inline">How to Compile:</h2>
 
 To compile this program, go to the directory containing the source files
-for pamt2 (which should also include the Makefile) and type "make".
+for pa2 (which should also include the Makefile) and type "make".
 </code>
 </pre>
 
@@ -93,11 +95,11 @@ for pamt2 (which should also include the Makefile) and type "make".
 	<code>
 <h2 style="display:inline">How to Run:</h2>
 
-To run this program, type the executable name followed by a number (or
-group of numbers separated by spaces).
+To run the program, type the executable name followed by a passphrase
+that is at least 8 characters, two keys in decimal, octal, or hex, and a
+number in the range of -63 to 63.
 Example:
-        [cs30xxxx@ieng6-201]:pamt2:517$ ./pamt2 1234567  
-        [cs30xxxx@ieng6-201]:pamt2:518$ ./pamt2 1234567 7654321 13579 97531
+    ./pa2 passphrase 0x123 32 12
 </code>
 </pre>
 
@@ -108,56 +110,10 @@ Example:
 
 Normal output is printed to stdout. An example of normal output would be
 the following:
-        [cs30xxxx@ieng6-201]:pamt2:540$ ./pamt2 9999999  
-
-        Calculating number of factors for 9999999 with sequential numOfFactors()
-        [be patient with large values]
-        9999999 is not prime
-        Number of factors: 12
-        Completed in 0.270611 sec
-
-        Calculating number of factors for 9999999 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        9999999 is not prime
-        Number of factors: 12
-        Completed in 0.061751 sec
-
-        *** numOfFactors Speed-up: 4.382328 ***
-        
-
-        [cs30xxxx@ieng6-201]:pamt2:541$ ./pamt2 123 456
-
-        Calculating number of factors for 123 with sequential numOfFactors()
-        [be patient with large values]
-        123 is not prime
-        Number of factors: 4
-        Completed in 0.000004 sec
-
-        Calculating number of factors for 123 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        123 is not prime
-        Number of factors: 4
-        Completed in 0.001502 sec
-
-        *** numOfFactors Speed-up: 0.002825 ***
-
-
-        Calculating number of factors for 456 with sequential numOfFactors()
-        [be patient with large values]
-        456 is not prime
-        Number of factors: 16
-        Completed in 0.000011 sec
-
-        Calculating number of factors for 456 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        456 is not prime
-        Number of factors: 16
-        Completed in 0.002301 sec
-
-        *** numOfFactors Speed-up: 0.004743 ***
+        [cs30xxxx@ieng9]:pa2:507$ ./pa2 passphrase 0x123 32 12
+        message for README file.
+        IrudD`c?3P374JC?B~jr
+                            x
 </code>
 </pre>
 
@@ -166,18 +122,59 @@ the following:
 	<code>
 <h2 style="display:inline">Abnormal Output:</h2>
 
-Abnormal output is printed to stderr. This can occur if a number being
-passed in is too large or not a number.
-        [cs30xanm@ieng6-201]:pamt2:538$ ./pamt2 99999999999999999999999999999
+Abnormal output is printed to stderr. This can occur if the first command
+line is not at least 8 characters long, if the second or third command line
+arguments are extremely long numbers or not numbers, if the fourth command
+line argument is an extremely long number, not a number, or not within the
+range of -63 and 63, or if there are not exactly four command line arguments
+passed in.
 
-        Skipping 99999999999999999999999999999
-        num should be less than or equal to 8589934592
+When there are not exactly four parameters:
+        [cs30xanm@ieng9]:pa2:509$ ~/../public/pa2test passphrase 123 456    
 
+        Usage: /home/solaris/ieng9/cs30x/cs30xanm/../public/pa2test passphrase 
+        key0 key1 rotateValue
+            passphrase   (must be at least eight characters long)
+            key0         (must be numeric; decimal, octal, or hexadecimal)
+            key1         (must be numeric; decimal, octal, or hexadecimal)
+            rotateValue  (must be a decimal value within the range [-63 - +63])
 
-        [cs30xanm@ieng6-201]:pamt2:539$ ./pamt2 99999999a                    
+When arguments are not numbers:
+        [cs30xanm@ieng9]:pa2:510$ ~/../public/pa2test passphrase 123a 456b 7c
 
-        Skipping 99999999a
-        not a valid long long int
+                "123a" is not an integer
+
+                "456b" is not an integer
+
+                "7c" is not an integer
+
+                --- Found 3 error(s) ---
+
+When arguments are extremely long numbers:
+        [cs30xanm@ieng9]:pa2:511$ ~/../public/pa2test passphrase 
+        12345678901234567 45678901234567890 78901234567890123   
+
+                Converting "12345678901234567" base "0": Result too large
+
+                Converting "45678901234567890" base "0": Result too large
+
+                Converting "78901234567890123" base "10": Result too large
+
+                --- Found 3 error(s) ---
+
+When the first command line argument is not at least 8 characters long:
+        [cs30xanm@ieng9]:pa2:512$ ~/../public/pa2test passph 123 456 7
+
+                Passphrase must be at least 8 chars long
+
+                --- Found 1 error(s) ---
+
+When the fourth command line argument is not within the range [-63, 63]:
+        [cs30xanm@ieng9]:pa2:513$ ~/../public/pa2test passphrase 123 456 77
+
+                Rotation value must be within the range of [-63 - +63]
+
+                --- Found 1 error(s) ---
 </code>
 </pre>
 
@@ -186,18 +183,26 @@ passed in is too large or not a number.
 	<code>
 <h2 style="display:inline">Testing:</h2>
 
-This program was tested using the sample pamt2test executable that was
-provided. Both programs were run with the same input and their outputs were
-inspected to see if they were different.
+This program was unit tested in parts using the testcreateMask.c,
+testmyCipher.c, testparseKey.c, testparsePassphrase.c, testparseRotateValue.c,
+and testrotate.c files to test the assembly and c++ modules createMask.s,
+myCipher.s, parseKey.c, parsePassphrase.c, parseRotateValue.s, and rotate.s.
+We wrote our own test in the test files to check if the assembly and c++
+modules worked properly.
+
+    This program was also tested using the sample pa2test that was provided.
+Both programs were run with the same input and their outputs were inspected
+to see if they were different.
 Running this code:
-        ~/../public/pamt2test 123 456 789 >&amp; REFSOL
-        ./pamt2 123 456 789 >&amp; MYSOL
-        diff -c MYSOL REFSOL
-will redirect the output of pamt2test to REFSOL and pamt2 to MYSOL. Then we
-will compare the two output files using the diff command. If the two output
-are the same, then it will indicate that there are no differences. We should
-ignore the time ti took to complete each method and the speed up times since
-they will differ every time we run this program.
+        ~/../public/pa2test abcdefgh 123 456 12 < testInput >& REFSOL
+        ./pa2 abcdefgh 123 456 12 < testInput >& MYSOL
+        diff -c REFSOL MYSOL
+will redirect the output of pa2test to REFSOL and pa2 to MYSOL. Then it will
+compare the two output files using the diff command. If the two outputs are
+the same, then it will indicate there are no differences. If the incorrect
+number of command line arguments are passed in to the test and our program 
+and are compared using the diff command, the first line should be ignored
+since the names of the executables are different.
 </code>
 </pre>
 

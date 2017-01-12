@@ -67,14 +67,9 @@
 	<code>
 <h2 style="display:inline">Description:</h2>
 
-This assignment further explores OpenMP, an API that supports
-multi-platform chared memory multi-threading with minimal effort. We will
-compare the runtime of the serial implementation and the parallel version.
-The algorithms we are writing are numOfFactors. There will be a serial
-version and a parallel version. The parallel version will be identical to the
-corresponding serial version, but with added OpenMP pragmas. This program
-will take a number as input and loop thru the range [lo, hi) and look to see
-how many times that number is evenly divisible by the numbers in the range.
+This program takes a single integer as input from the command line and
+prints a short message on the terminal that includes a welcome message, when
+the assignment is due, and the square of the integer that was passed in.
 </code>
 </pre>
 
@@ -84,7 +79,7 @@ how many times that number is evenly divisible by the numbers in the range.
 <h2 style="display:inline">How to Compile:</h2>
 
 To compile this program, go to the directory containing the source files
-for pamt2 (which should also include the Makefile) and type "make".
+for pa0 (which should also include the Makefile) and type "make".
 </code>
 </pre>
 
@@ -93,11 +88,10 @@ for pamt2 (which should also include the Makefile) and type "make".
 	<code>
 <h2 style="display:inline">How to Run:</h2>
 
-To run this program, type the executable name followed by a number (or
-group of numbers separated by spaces).
+ To run the program, type the executable name followed by an integer
+argument. 
 Example:
-        [cs30xxxx@ieng6-201]:pamt2:517$ ./pamt2 1234567  
-        [cs30xxxx@ieng6-201]:pamt2:518$ ./pamt2 1234567 7654321 13579 97531
+        ./a.out 7
 </code>
 </pre>
 
@@ -108,56 +102,10 @@ Example:
 
 Normal output is printed to stdout. An example of normal output would be
 the following:
-        [cs30xxxx@ieng6-201]:pamt2:540$ ./pamt2 9999999  
-
-        Calculating number of factors for 9999999 with sequential numOfFactors()
-        [be patient with large values]
-        9999999 is not prime
-        Number of factors: 12
-        Completed in 0.270611 sec
-
-        Calculating number of factors for 9999999 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        9999999 is not prime
-        Number of factors: 12
-        Completed in 0.061751 sec
-
-        *** numOfFactors Speed-up: 4.382328 ***
-        
-
-        [cs30xxxx@ieng6-201]:pamt2:541$ ./pamt2 123 456
-
-        Calculating number of factors for 123 with sequential numOfFactors()
-        [be patient with large values]
-        123 is not prime
-        Number of factors: 4
-        Completed in 0.000004 sec
-
-        Calculating number of factors for 123 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        123 is not prime
-        Number of factors: 4
-        Completed in 0.001502 sec
-
-        *** numOfFactors Speed-up: 0.002825 ***
-
-
-        Calculating number of factors for 456 with sequential numOfFactors()
-        [be patient with large values]
-        456 is not prime
-        Number of factors: 16
-        Completed in 0.000011 sec
-
-        Calculating number of factors for 456 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        456 is not prime
-        Number of factors: 16
-        Completed in 0.002301 sec
-
-        *** numOfFactors Speed-up: 0.004743 ***
+        [cs30xxxx@ieng9]:pa0:208$ ./a.out 7
+        Welcome to CSE 30, Spring 2016
+        PA0 is due on April 5, 2016
+        The square of 7 is 49
 </code>
 </pre>
 
@@ -166,18 +114,20 @@ the following:
 	<code>
 <h2 style="display:inline">Abnormal Output:</h2>
 
-Abnormal output is printed to stderr. This can occur if a number being
-passed in is too large or not a number.
-        [cs30xanm@ieng6-201]:pamt2:538$ ./pamt2 99999999999999999999999999999
+Abnormal output is printed to stderr. This can occur if an integer is not
+specified or if there are too many arguments.
 
-        Skipping 99999999999999999999999999999
-        num should be less than or equal to 8589934592
+When an integer is not specified:
+        [cs30xxxx@ieng9]:pa0:210$ ./a.out  
+        ./a.out: missing integer arg
+        Usage: ./a.out [INTEGER]
+         Integer value to square        
 
-
-        [cs30xanm@ieng6-201]:pamt2:539$ ./pamt2 99999999a                    
-
-        Skipping 99999999a
-        not a valid long long int
+When there are too many arguments passed in:
+        [cs30xxxx@ieng9]:pa0:211$ ./a.out 1 1
+        ./a.out: too many arguments
+        Usage: ./a.out [INTEGER]
+         Integer value to square
 </code>
 </pre>
 
@@ -186,18 +136,21 @@ passed in is too large or not a number.
 	<code>
 <h2 style="display:inline">Testing:</h2>
 
-This program was tested using the sample pamt2test executable that was
-provided. Both programs were run with the same input and their outputs were
-inspected to see if they were different.
+This program was tested using the sample pa0test that was provided. Both
+programs were run with the same input and their outputs were inspected to see
+if they were different.
 Running this code:
-        ~/../public/pamt2test 123 456 789 >&amp; REFSOL
-        ./pamt2 123 456 789 >&amp; MYSOL
+        ./a.out 7 >&amp; MYSOL
+        ~/../public/pa0test 7 >&amp; REFSOL
         diff -c MYSOL REFSOL
-will redirect the output of pamt2test to REFSOL and pamt2 to MYSOL. Then we
+will redirect the output of a.out to MYSOL and pa0test to REFSOL. Then it
 will compare the two output files using the diff command. If the two output
-are the same, then it will indicate that there are no differences. We should
-ignore the time ti took to complete each method and the speed up times since
-they will differ every time we run this program.
+are the same, then it will indicate that there are no differences.
+
+Furthermore, the squareNum() function was unit tested to ensure that it
+returns the proper value. Test inputs include positive numbers, negative
+numbers, 0, and strings (like "a" or "asdasd") to see if the two programs have
+the same output.
 </code>
 </pre>
 

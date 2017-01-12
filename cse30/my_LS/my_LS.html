@@ -67,14 +67,16 @@
 	<code>
 <h2 style="display:inline">Description:</h2>
 
-This assignment further explores OpenMP, an API that supports
-multi-platform chared memory multi-threading with minimal effort. We will
-compare the runtime of the serial implementation and the parallel version.
-The algorithms we are writing are numOfFactors. There will be a serial
-version and a parallel version. The parallel version will be identical to the
-corresponding serial version, but with added OpenMP pragmas. This program
-will take a number as input and loop thru the range [lo, hi) and look to see
-how many times that number is evenly divisible by the numbers in the range.
+The purpose of this programming assignment is to further emphasize C and
+implement a real Unix command(along with using more Standard C Library
+routines). I built a program called "myls" that will function very
+similarly to the real Unix command "ls". This program will list information
+about the files (or directories) entered as a command line argument. If
+files/directories are not specified, "myls" prints information about the
+current directory by default. Some of the system calls and Standard C Library
+routines I used include getopt_long(), lstat(), opendir(), readdir(),
+closedir(), malloc(), realloc(), free(), qsort(), getpwuid(), getgrgid(),
+strcmp(), and ctime().
 </code>
 </pre>
 
@@ -84,7 +86,7 @@ how many times that number is evenly divisible by the numbers in the range.
 <h2 style="display:inline">How to Compile:</h2>
 
 To compile this program, go to the directory containing the source files
-for pamt2 (which should also include the Makefile) and type "make".
+for pa3 (which should also include the Makefile) and type "make".
 </code>
 </pre>
 
@@ -93,11 +95,33 @@ for pamt2 (which should also include the Makefile) and type "make".
 	<code>
 <h2 style="display:inline">How to Run:</h2>
 
-To run this program, type the executable name followed by a number (or
-group of numbers separated by spaces).
-Example:
-        [cs30xxxx@ieng6-201]:pamt2:517$ ./pamt2 1234567  
-        [cs30xxxx@ieng6-201]:pamt2:518$ ./pamt2 1234567 7654321 13579 97531
+To run the program, type the executable name "myls" followed by zero or
+more of these flags: -a, --all, -l, -r, --reverse, -t, -B, --ignore-backups,
+-F, --classify, -h, --help. You can put the flags in any order. You can
+combine the flags with one letter together into one flag. After the flags,
+you can specify a directory, filename, or multiple of each. You can also
+specify none to use the current directory. Examples:
+
+        ./myls
+        ./myls -a
+        ./myls -l
+        ./myls -r
+        ./myls -t
+        ./myls -B
+        ./myls -F
+        ./myls -h
+        ./myls -alrt
+        ./myls --all
+        ./myls --reverse
+        ./myls --ignore-backups
+        ./myls --classify
+        ./myls --help
+        ./myls --reverse --ignore-backups --classify
+        ./myls -alrt --ignore-backups
+        ./myls ./test
+        ./myls ./printPermissions.c
+        ./myls -alrt ~/../public ~/../
+          etc...
 </code>
 </pre>
 
@@ -106,58 +130,38 @@ Example:
 	<code>
 <h2 style="display:inline">Normal Output:</h2>
 
-Normal output is printed to stdout. An example of normal output would be
+Normal output is printed to stdout. Some examples of normal output would be
 the following:
-        [cs30xxxx@ieng6-201]:pamt2:540$ ./pamt2 9999999  
+        [cs30xxxx@ieng9]:pa4:560$ ./myls ./test
+        ./test:
+        testFile
+        testFile.c
+        testfile
+        testfile.c
+        testfile.c~
+        testfile~
 
-        Calculating number of factors for 9999999 with sequential numOfFactors()
-        [be patient with large values]
-        9999999 is not prime
-        Number of factors: 12
-        Completed in 0.270611 sec
+        [cs30xxxx@ieng9]:pa4:561$ ./myls -al ./test
+        ./test:
+        drwxr-x---   2 cs30xanm cs30x       4096 May 29 20:01 .
+        drwxr-x---   4 cs30xanm cs30x       4096 May 29 19:58 ..
+        -rw-r-----   1 cs30xanm cs30x          0 Jul 10  2014 testFile
+        -rw-r-----   1 cs30xanm cs30x          0 Jul 10  2014 testFile.c
+        -rw-r-----   1 cs30xanm cs30x          0 May 29 19:59 testfile
+        -rw-r-----   1 cs30xanm cs30x          0 May 29 19:59 testfile.c
+        -rw-r-----   1 cs30xanm cs30x          0 May 29 20:01 testfile.c~
+        -rw-r-----   1 cs30xanm cs30x          0 May 29 20:01 testfile~
 
-        Calculating number of factors for 9999999 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        9999999 is not prime
-        Number of factors: 12
-        Completed in 0.061751 sec
+        [cs30xxxx@ieng9]:pa4:562$ ./myls -al --ignore-backups ./test
+        ./test:
+        drwxr-x---   2 cs30xanm cs30x       4096 May 29 20:01 .
+        drwxr-x---   4 cs30xanm cs30x       4096 May 29 19:58 ..
+        -rw-r-----   1 cs30xanm cs30x          0 Jul 10  2014 testFile
+        -rw-r-----   1 cs30xanm cs30x          0 Jul 10  2014 testFile.c
+        -rw-r-----   1 cs30xanm cs30x          0 May 29 19:59 testfile
+        -rw-r-----   1 cs30xanm cs30x          0 May 29 19:59 testfile.c
 
-        *** numOfFactors Speed-up: 4.382328 ***
-        
-
-        [cs30xxxx@ieng6-201]:pamt2:541$ ./pamt2 123 456
-
-        Calculating number of factors for 123 with sequential numOfFactors()
-        [be patient with large values]
-        123 is not prime
-        Number of factors: 4
-        Completed in 0.000004 sec
-
-        Calculating number of factors for 123 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        123 is not prime
-        Number of factors: 4
-        Completed in 0.001502 sec
-
-        *** numOfFactors Speed-up: 0.002825 ***
-
-
-        Calculating number of factors for 456 with sequential numOfFactors()
-        [be patient with large values]
-        456 is not prime
-        Number of factors: 16
-        Completed in 0.000011 sec
-
-        Calculating number of factors for 456 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        456 is not prime
-        Number of factors: 16
-        Completed in 0.002301 sec
-
-        *** numOfFactors Speed-up: 0.004743 ***
+        etc...
 </code>
 </pre>
 
@@ -166,18 +170,44 @@ the following:
 	<code>
 <h2 style="display:inline">Abnormal Output:</h2>
 
-Abnormal output is printed to stderr. This can occur if a number being
-passed in is too large or not a number.
-        [cs30xanm@ieng6-201]:pamt2:538$ ./pamt2 99999999999999999999999999999
+Abnormal output is printed to stderr. This can occur if an error returned
+from parseArgs() (only print usage statement and return in this case) or there
+are errors in buildFileInfoTable.c (print the appropriate error message and
+return). Examples:
 
-        Skipping 99999999999999999999999999999
-        num should be less than or equal to 8589934592
+        [cs30xxxx@ieng9]:pa4:568$ ./myls noPermissionDir 
+        noPermissionDir:
+        opendir --noPermissionDir: Permission denied
 
 
-        [cs30xanm@ieng6-201]:pamt2:539$ ./pamt2 99999999a                    
+        [cs30xxxx@ieng9]:pa4:570$ ./myls -g ./test   
+        ./myls: illegal option -- g
+        Usage: ./myls [-ahlrtBF] [file ...]
 
-        Skipping 99999999a
-        not a valid long long int
+
+        [cs30xxxx@ieng9]:pa4:571$ ./myls foobar   
+        lstat --foobar: No such file or directory
+
+        
+        [cs30xxxx@ieng9]:pa4:572$ ulimit -d 1
+        [cs30xxxx@ieng9]:pa4:573$ ./myls
+        Attempted to allocate memory in buildFileInfoTable(): Not enough space
+
+        
+        [cs30xxxx@ieng9]:pa4:580$ ulimit -d 9
+        [cs30xxxx@ieng9]:pa4:581$ ./myls
+        .:
+        Attempted to allocate memory in buildFileInfoTable(): Not enough space
+        Only partial info will be displayed.
+        MYSOL
+        Makefile
+        README
+        README~
+        REFSOL
+        buildFileInfoTable.c
+        buildFileInfoTable.ln
+        buildFileInfoTable.o
+        modTimeCompare.c
 </code>
 </pre>
 
@@ -186,18 +216,20 @@ passed in is too large or not a number.
 	<code>
 <h2 style="display:inline">Testing:</h2>
 
-This program was tested using the sample pamt2test executable that was
-provided. Both programs were run with the same input and their outputs were
-inspected to see if they were different.
-Running this code:
-        ~/../public/pamt2test 123 456 789 >&amp; REFSOL
-        ./pamt2 123 456 789 >&amp; MYSOL
-        diff -c MYSOL REFSOL
-will redirect the output of pamt2test to REFSOL and pamt2 to MYSOL. Then we
-will compare the two output files using the diff command. If the two output
-are the same, then it will indicate that there are no differences. We should
-ignore the time ti took to complete each method and the speed up times since
-they will differ every time we run this program.
+This program was unit tested in parts using the testbuildFileInfoTable.c,
+testmodTimeCompareRev.c, testnameCompare.c, and testparseArgs.c programs.
+    
+This program was also tested using the sample pa4ref that was provided.
+Both programs were run with the same input and their outputs were inspected
+to see if they were different.
+Example of running this code:
+ ~/../public/pa4ref -alrt ~/../public ~/../ ~/../public/pa4SampleFiles >&amp; REFSOL
+ ./myls -alrt ~/../public ~/../ ~/../public/pa4SampleFiles >&amp; MYSOL
+ diff -c REFSOL MYSOL
+will redirect the output of pa4ref to REFSOL and myls to MYSOL. Then it will
+compare the two output files using the diff command. If the two outputs are
+the same, then it will indicate there are no differences. If errors were
+encountered, it will show where.
 </code>
 </pre>
 

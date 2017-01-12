@@ -67,14 +67,24 @@
 	<code>
 <h2 style="display:inline">Description:</h2>
 
-This assignment further explores OpenMP, an API that supports
-multi-platform chared memory multi-threading with minimal effort. We will
-compare the runtime of the serial implementation and the parallel version.
-The algorithms we are writing are numOfFactors. There will be a serial
-version and a parallel version. The parallel version will be identical to the
-corresponding serial version, but with added OpenMP pragmas. This program
-will take a number as input and loop thru the range [lo, hi) and look to see
-how many times that number is evenly divisible by the numbers in the range.
+This assignment will explore OpenMP, an API that supports multi-platform 
+shared memory multi- threading with minimal effort. Serial code can be easily
+made parallel by the addition of added directives (OpenMP pragmas) that will
+instruct the compiler to generate parallel code. This program will use a
+12-byte encoded pattern that needs to be decoded to initialize an array of a
+user-specified length. Once the array is initialized correctly, the program
+will perform two modified sum calculations and find the min and max values.
+Each step of this program will be performed it two different ways:
+
+1) using a serial implementation
+2) with a parallel version.
+
+We will then compare the runtime of each version.
+
+The three algorithms we are writing are: initData, squaredSumMinMax, and
+sqrtSumMinMax. For each of these algorithms, there will be a serial version and
+a parallel version. Each of the parallel versions will be identical to the
+corresponding serial version, but with added OpenMP pragmas.
 </code>
 </pre>
 
@@ -84,7 +94,7 @@ how many times that number is evenly divisible by the numbers in the range.
 <h2 style="display:inline">How to Compile:</h2>
 
 To compile this program, go to the directory containing the source files
-for pamt2 (which should also include the Makefile) and type "make".
+for pamt1 (which should also include the Makefile) and type "make".
 </code>
 </pre>
 
@@ -93,11 +103,9 @@ for pamt2 (which should also include the Makefile) and type "make".
 	<code>
 <h2 style="display:inline">How to Run:</h2>
 
-To run this program, type the executable name followed by a number (or
-group of numbers separated by spaces).
+To run the program, type the executable name followed by an array size.
 Example:
-        [cs30xxxx@ieng6-201]:pamt2:517$ ./pamt2 1234567  
-        [cs30xxxx@ieng6-201]:pamt2:518$ ./pamt2 1234567 7654321 13579 97531
+        [cs30xxxx@ieng6-203]:pamt1:128$ ./pamt1 99999
 </code>
 </pre>
 
@@ -108,56 +116,67 @@ Example:
 
 Normal output is printed to stdout. An example of normal output would be
 the following:
-        [cs30xxxx@ieng6-201]:pamt2:540$ ./pamt2 9999999  
-
-        Calculating number of factors for 9999999 with sequential numOfFactors()
+        [cs30xxxx@ieng6-203]:pamt1:128$ ./pamt1 99999
+        Using array size = 99999
+        Initializing array with values using sequential initData()
         [be patient with large values]
-        9999999 is not prime
-        Number of factors: 12
-        Completed in 0.270611 sec
 
-        Calculating number of factors for 9999999 with parallel numOfFactors()
-        [be less patient]
+        Checking that sequential initData produced the values as expected
+        Checking the first 12 bytes only
+        Should print out the string: "CSE30 Rocks!"
+        CSE30 Rocks!
+
+        Sequential initData time = 0.005640
+
+        Initializing array with same values using parallel initData()
+        [be less patient with large values]
         Num of threads = 8
-        9999999 is not prime
-        Number of factors: 12
-        Completed in 0.061751 sec
 
-        *** numOfFactors Speed-up: 4.382328 ***
-        
+        Checking that parallel initData produced the values as expected
+        Checking the first 12 bytes only
+        Should print out the string: "CSE30 Rocks!"
+        CSE30 Rocks!
 
-        [cs30xxxx@ieng6-201]:pamt2:541$ ./pamt2 123 456
+        Parallel initData time = 0.013618
 
-        Calculating number of factors for 123 with sequential numOfFactors()
-        [be patient with large values]
-        123 is not prime
-        Number of factors: 4
-        Completed in 0.000004 sec
+        *** initData Speed-up: 0.414140 ***
 
-        Calculating number of factors for 123 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        123 is not prime
-        Number of factors: 4
-        Completed in 0.001502 sec
+        Sequential squared sum, min, max [be patient]
+        Sequential squaredSumMinMax time = 0.000447
 
-        *** numOfFactors Speed-up: 0.002825 ***
+        Squared Sum is: 638965580
+        Min value is: 32
+        Max value is: 115
+        Completed in 0.000447 sec
 
+        Parallel squared sum, min, max [don't need to be as patient]
+        Parallel squaredSumMinMax time = 0.012360
 
-        Calculating number of factors for 456 with sequential numOfFactors()
-        [be patient with large values]
-        456 is not prime
-        Number of factors: 16
-        Completed in 0.000011 sec
+        Squared Sum is: 638965580
+        Min value is: 32
+        Max value is: 115
+        Completed in 0.012360 sec
 
-        Calculating number of factors for 456 with parallel numOfFactors()
-        [be less patient]
-        Num of threads = 8
-        456 is not prime
-        Number of factors: 16
-        Completed in 0.002301 sec
+        *** squaredSumMinMax Speed-up: 0.036198 ***
 
-        *** numOfFactors Speed-up: 0.004743 ***
+        Sequential sqrt sum, min, max [be patient]
+        Sequential sqrtSumMinMax time = 0.001566
+
+        Sqrt Sum is: 847343.856311
+        Min value is: 32
+        Max value is: 115
+        Completed in 0.001566 sec
+
+        Parallel sqrt sum, min, max [don't need to be as patient]
+        Parallel sqrtSumMinMax time = 0.020566
+
+        Sqrt Sum is: 847343.856311
+        Min value is: 32
+        Max value is: 115
+        Completed in 0.020566 sec
+
+        *** sqrtSumMinMax Speed-up: 0.076129 ***
+
 </code>
 </pre>
 
@@ -166,18 +185,13 @@ the following:
 	<code>
 <h2 style="display:inline">Abnormal Output:</h2>
 
-Abnormal output is printed to stderr. This can occur if a number being
-passed in is too large or not a number.
-        [cs30xanm@ieng6-201]:pamt2:538$ ./pamt2 99999999999999999999999999999
+Abnormal output is printed to stderr. This can occur if the first command
+line argument is not in the range [12 - 4294967295] or not a number. For all
+abnormal input, this is printed out:
+        [cs30xxxx@ieng6-203]:pamt1:133$ ./pamt1 99999a               
 
-        Skipping 99999999999999999999999999999
-        num should be less than or equal to 8589934592
-
-
-        [cs30xanm@ieng6-201]:pamt2:539$ ./pamt2 99999999a                    
-
-        Skipping 99999999a
-        not a valid long long int
+        Usage: ./pamt1 array_size
+            array_size  (must be >= 12 and <= 4294967295)
 </code>
 </pre>
 
@@ -186,18 +200,18 @@ passed in is too large or not a number.
 	<code>
 <h2 style="display:inline">Testing:</h2>
 
-This program was tested using the sample pamt2test executable that was
+This program was tested using the sample pamt1test executable that was
 provided. Both programs were run with the same input and their outputs were
 inspected to see if they were different.
 Running this code:
-        ~/../public/pamt2test 123 456 789 >&amp; REFSOL
-        ./pamt2 123 456 789 >&amp; MYSOL
-        diff -c MYSOL REFSOL
-will redirect the output of pamt2test to REFSOL and pamt2 to MYSOL. Then we
-will compare the two output files using the diff command. If the two output
-are the same, then it will indicate that there are no differences. We should
-ignore the time ti took to complete each method and the speed up times since
-they will differ every time we run this program.
+        ~/../public/pamt1test 420 >&amp; REFSOL
+        ./pamt1 420 >&amp; MYSOL
+        diff -c REFSOL MYSOL
+will redirect the output of pamt1test to REFSOL and pamt1 to MYSOL. Then it will
+compare the two output files using the diff command. If the two outputs are
+the same, then it will indicate there are no differences. We should ignore
+the time it took to complete each method since the times will differ every
+time we run this program.
 </code>
 </pre>
 
