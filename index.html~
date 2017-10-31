@@ -104,8 +104,8 @@
 					<div class="image"><img src="images/cse100_homepage.jpg" alt="" /></div>
 					<div class="content">
 						<center><h2>Advanced Data Structures</h2></center>
-						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;High-performance data structures and supporting algorithms. Use and implementation of data structures like (un)balanced trees, graphs, priority queues, and hash tables. Also memory management, pointers, recursion. Theoretical and practical performance analysis, both average case and amortized. Uses C++ and STL.</p>
-						<center><a href="cse30/cse30_page.html">Click for Assignments</a></center>
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;High-performance data structures and supporting algorithms. Use and implementation of data structures like balanced/unbalanced trees, graphs, priority queues, and hash tables. Also memory management, pointers, recursion. Theoretical and practical performance analysis, both average case and amortized. Uses C++ and STL.</p>
+						<center><a href="cse100/cse100_page.html">Click for Assignments</a></center>
 					</div>
 				</section>
 			</section>
@@ -125,7 +125,7 @@
 					<div class="content">
 						<center><h2>Android</h2></center>
 						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Using the Android SDK, I've created multiple application ranging from tic-tac-toe to tracking your location.</p>
-						<center><a href="updated_soon.html">Click for Projects</a></center>
+						<center><a href="./android_projects/android_project_page.html">Click for Projects</a></center>
 					</div>
 				</section>
 				<section class="spotlight">
@@ -184,44 +184,6 @@
 				</section>
 			</section>
 
-			<!-- Three -->
-			<!--
-				<section id="three" class="wrapper style3 special">
-					<div class="inner">
-						<header class="major">
-							<h2>Accumsan mus tortor nunc aliquet</h2>
-							<p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
-							fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
-						</header>
-						<ul class="features">
-							<li class="icon fa-paper-plane-o">
-								<h3>Arcu accumsan</h3>
-								<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenea	ligula consequat consequat.</p>
-							</li>
-							<li class="icon fa-laptop">
-								<h3>Ac Augue Eget</h3>
-								<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenea	ligula consequat consequat.</p>
-							</li>
-							<li class="icon fa-code">
-								<h3>Mus Scelerisque</h3>
-								<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenea	ligula consequat consequat.</p>
-							</li>
-							<li class="icon fa-headphones">
-								<h3>Mauris Imperdiet</h3>
-								<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenea	ligula consequat consequat.</p>
-							</li>
-							<li class="icon fa-heart-o">
-								<h3>Aenean Primis</h3>
-								<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenea	ligula consequat consequat.</p>
-							</li>
-							<li class="icon fa-flag-o">
-								<h3>Tortor Ut</h3>
-								<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenea	ligula consequat consequat.</p>
-							</li>
-						</ul>
-					</div>
-				</section>
-			-->
 
 
 
