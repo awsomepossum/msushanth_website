@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<base href="../">
+		<title>Sushanth Mukkamalla</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<!--my favicon-->
+		<link rel="shortcut icon" type="image/jpg" href="/favicon.jpg" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+
+	<body class="landing">
+		<base href="../">
+
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header" class="alt">
+				<h1><a href="index.html">Sushanth Mukkamalla</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="index.html#one">Classes</a></li>
+									<li><a href="index.html#three">Projects</a></li>
+									<li><a href="index.html#five">Work Experience</a></li>
+									<!--<li><a href="interface/arduino_server.html">Arduino Server</a></li>-->
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+
+
+			<!-- Main -->
+			<!--
+			<article id="main">
+				<header>
+					<center><h2>Intro to Computer Science &amp<br />
+					Object Oriented Programming: Java</h2></center>
+				</header>
+			</article>
+			-->
+
+
+
+			<!-- Classes Title -->
+			<!--
+			<section id="one" class="wrapper style1 special">
+					<div class="inner">
+						<center><h2>Classes I've taken</h2></center>
+					</div>
+			</section>
+			-->
+
+
+
+			<!-- Three -->
+			<section id="three" class="wrapper style3 special">
+				<div class="inner">
+					<header class="major">
+						<center><h2>Advanced Data Structures</h2></center>
+						<center><p>Click on any box for a demo or to learn more</br>Email sushanthmukkamalla@gmail.com for code</p></center>
+					</header>
+					<ul class="features">
+						<li class="icon fa-laptop" onclick="location.href='./cse100/bst_review/bst_review.html';">
+							<h4>C++/Git Warm-Up, Binary Search Trees Review</h4>
+							<p>This program implements a "plain" and a template-based Binary .</p>
+						</li>
+						<li class="icon fa-code" onclick="location.href='./cse100/auto_complete/auto_complete.html';">
+							<h3>Auto-Complete/Spell Checking</h3>
+							<p>This program takes 4 inputs from the command line and draws an S on the terminal.</p>
+						</li>
+						<li class="icon fa-code" onclick="location.href='./cse100/huffman_compression/huffman_compression.html';">
+							<h3>Huffman Compression</h3>
+							<p>This propgram will encrypt/decrypt user input from stdin and output the encrypted/decrypted message to stdout.</p>
+						</li>
+						<li class="icon fa-laptop" onclick="location.href='./cse100/graphs_fun/graphs_fun.html';">
+							<h3>Fun with Graphs</h3>
+							<p>This is an interactive program that takes words from stdin and searches for the corresponding anagrams from a user-provided anagrams file.</p>
+						</li>
+						<li class="icon fa-code" onclick="location.href='./cse100/graphs_extension/graphs_extension.html';">
+							<h3>Added Implementation to Graphs</h3>
+							<p>Created a program called "myls" that will function very similarly to the real Unix command "ls".</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+
+
+
+
+
+
+
+
+
+			<!-- Footer -->
+			<!--
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</footer>
+			-->
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
