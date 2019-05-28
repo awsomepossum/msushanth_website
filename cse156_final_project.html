@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<base href="./">
+		<title>Sushanth Mukkamalla</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<!--my favicon-->
+		<link rel="shortcut icon" type="image/jpg" href="./favicon.jpg" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<!--
+		<script type="text/javascript">
+			function encode(input) {
+				var encodedTxt = encodeURIComponent(input).replace(/'/g,"%27").replace(/"/g,"%22");
+				console.log(encodedTxt);
+				return encodedTxt;
+			}
+			function decode(input) {
+				var decodedTxt = decodeURIComponent(input.replace(/\+/g,  " "));
+				console.log(decodedTxt);
+				return decodedTxt;
+			}
+		</script>
+		-->
+		<script>
+			$(document).ready(function() {
+				$("#classifyBtn").click(function() {
+					var obj = document.getElementById('input-review');
+					var input = obj.value;
+					var encodedTxt = encodeURIComponent(input).replace(/'/g,"%27").replace(/"/g,"%22");
+					var urlStr = "http://ec2-174-129-190-149.compute-1.amazonaws.com:8080"
+
+					$.get(urlStr+"/testing/"+encodedTxt, function(data, status){
+						console.log(data);
+						outputTxt = "Called the function and got this response:<br/>" + data;
+						$("#outputTxt").html(outputTxt.replace(/\n/g, "<br />"));
+					})
+
+				});
+			});
+		</script>
+	</head>
+
+	<body class="landing">
+		<base href="./">
+
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header" class="alt">
+				<h1><a href="index.html">Sushanth Mukkamalla</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="index.html#one">Classes</a></li>
+									<li><a href="index.html#three">Projects</a></li>
+									<li><a href="index.html#five">Work Experience</a></li>
+									<!--<li><a href="interface/arduino_server.html">Arduino Server</a></li>-->
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<section id="three" class="wrapper style3 special">
+				<div class="inner">
+					<header class="major">
+						<center><h2>CSE 156: Statistical NLP<br/> Final Project</h2></center>
+						<center><p>This is the FINAL PROJECT!!!</p></center>
+					</header>
+
+					<div class="wrapper" align="left">
+						<h4>Enter a Review to Classify:</h4>
+						<textarea type="text" name="input-review" id="input-review" value="" placeholder="Enter your review" rows="6"></textarea>
+						<br/>
+						<a id="classifyBtn" class="button">Classify</a>
+						<!--
+						<div>
+							<input type="button" onclick="decode()" value="Decode">
+							<input type="button" onclick="encode()" value="Encode">
+						</div>
+						-->
+
+						<br/>
+						<br/>
+						<br/>
+						<p id="outputTxt" style="display:inline">Output: </p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
