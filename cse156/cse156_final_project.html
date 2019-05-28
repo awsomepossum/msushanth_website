@@ -33,15 +33,24 @@
 			$(document).ready(function() {
 				$("#classifyBtn").click(function() {
 					var obj = document.getElementById('input-review');
-					var input = obj.value;
-					var encodedTxt = encodeURIComponent(input).replace(/'/g,"%27").replace(/"/g,"%22");
-					var urlStr = "http://ec2-174-129-190-149.compute-1.amazonaws.com:8080"
+					var inputTxt = obj.value;
+					var urlStr = "http://ec2-174-129-190-149.compute-1.amazonaws.com:8080"+"/classify/"
 
-					$.get(urlStr+"/testing/"+encodedTxt, function(data, status){
-						console.log(data);
-						outputTxt = "Called the function and got this response:<br/>" + data;
-						$("#outputTxt").html(outputTxt.replace(/\n/g, "<br />"));
-					})
+					$.ajax({
+					  url: urlStr,
+					  type: "GET",
+					  data: {
+					    InputData: inputTxt
+					  },
+					  success: function(response) {
+					    console.log(response);
+							outputTxt = "Called the function and got this response:<br/>" + response;
+							$("#outputTxt").html(outputTxt.replace(/\n/g, "<br />"));
+					  },
+					  error: function(xhr) {
+					    //Do Something to handle error
+					  }
+					});
 
 				});
 			});
