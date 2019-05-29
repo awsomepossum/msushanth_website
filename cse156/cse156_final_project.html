@@ -32,9 +32,12 @@
 		<script>
 			$(document).ready(function() {
 				$("#classifyBtn").click(function() {
+					$("#outputTxt").html("Running classifier...");
+					$("#outputGraph").attr('src', '');
+					
 					var obj = document.getElementById('input-review');
 					var inputTxt = obj.value;
-					var urlStr = "http://ec2-174-129-190-149.compute-1.amazonaws.com:8080"+"/classify/"
+					var urlStr = "http://ec2-18-205-190-11.compute-1.amazonaws.com:8080"+"/classify/"
 
 					$.ajax({
 					  url: urlStr,
@@ -46,9 +49,12 @@
 					    console.log(response);
 							outputTxt = "Called the function and got this response:<br/>" + response;
 							$("#outputTxt").html(outputTxt.replace(/\n/g, "<br />"));
+
+							$("#outputGraph").attr('src',"https://s3.amazonaws.com/cse156finalproject/"+response+"_graph.png");
 					  },
 					  error: function(xhr) {
 					    //Do Something to handle error
+							$("#outputTxt").html("Error occurred!");
 					  }
 					});
 
@@ -91,7 +97,8 @@
 						<center><p>This is the FINAL PROJECT!!!</p></center>
 					</header>
 
-					<div class="wrapper" align="left">
+					<!--<div class="wrapper" align="left">-->
+					<div align="left">
 						<h4>Enter a Review to Classify:</h4>
 						<textarea type="text" name="input-review" id="input-review" value="" placeholder="Enter your review" rows="6"></textarea>
 						<br/>
@@ -106,7 +113,9 @@
 						<br/>
 						<br/>
 						<br/>
-						<p id="outputTxt" style="display:inline">Output: </p>
+						<p id="outputTxt" style="display:inline"></p>
+						<br/>
+						<img id="outputGraph">
 					</div>
 				</div>
 			</section>
