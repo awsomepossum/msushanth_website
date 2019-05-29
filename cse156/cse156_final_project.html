@@ -32,12 +32,19 @@
 		<script>
 			$(document).ready(function() {
 				$("#classifyBtn").click(function() {
-					$("#outputTxt").html("Running classifier...");
-					$("#outputGraph").attr('src', '');
-					
+
 					var obj = document.getElementById('input-review');
 					var inputTxt = obj.value;
 					var urlStr = "http://ec2-18-205-190-11.compute-1.amazonaws.com:8080"+"/classify/"
+
+					if (inputTxt == "") {
+						$("#outputTxt").html("Enter a valid input.");
+						$("#outputGraph").attr('src', '');
+						return;
+					}
+
+					$("#outputTxt").html("Running classifier...");
+					$("#outputGraph").attr('src', '');
 
 					$.ajax({
 					  url: urlStr,
