@@ -15,14 +15,21 @@
 		<script>
 			$(document).ready(function() {
 				$("#classifyBtn").click(function() {
+					// Disable so user cant spam the classify button
+					$("#classifyBtn").attr("disabled", true);
+
+					// Remove the previous output: predictions, graphs, explanations...
+					$("#outputGraph").attr('src', '');
+					document.getElementById("predictionOutput").innerHTML = ""
 
 					var obj = document.getElementById('input-review');
 					var inputTxt = obj.value;
-					var urlStr = "http://ec2-18-205-190-11.compute-1.amazonaws.com:8080"+"/classify/"
+					var urlStr = "http://ec2-3-92-49-151.compute-1.amazonaws.com:8080"+"/classify/"
 
+					// Dont run if the input is empty
 					if (inputTxt == "") {
 						$("#outputTxt").html("Enter a valid input.");
-						$("#outputGraph").attr('src', '');
+						$("#classifyBtn").attr("disabled", false);
 						return;
 					}
 
@@ -40,11 +47,26 @@
 							outputTxt = "Called the function and got this response:<br/>" + response;
 							$("#outputTxt").html(outputTxt.replace(/\n/g, "<br />"));
 
-							$("#outputGraph").attr('src',"https://s3.amazonaws.com/cse156finalproject/"+response+"_graph.png");
+							//Add the graph to the page
+							//$("#outputGraph").attr('src',"https://s3.amazonaws.com/cse156finalproject/"+response+"_graph.png");
+
+							//Add the contents of the txt file to the page
+							var xhttp = new XMLHttpRequest();
+	  					xhttp.onreadystatechange = function() {
+	    					if (this.readyState == 4 && this.status == 200) {
+									document.getElementById("predictionOutput").innerHTML = this.responseText;
+								}
+							};
+							xhttp.open("GET", "https://s3.amazonaws.com/cse156finalproject/"+response+"_prediction.txt", true);
+							xhttp.send();
+
+							// enable the button after displaying the entire response
+							$("#classifyBtn").attr("disabled", false);
 					  },
 					  error: function(xhr) {
 					    //Do Something to handle error
 							$("#outputTxt").html("Error occurred!");
+							$("#classifyBtn").attr("disabled", false);
 					  }
 					});
 
@@ -101,6 +123,7 @@
 						<p id="outputTxt" style="display:inline"></p>
 						<br/>
 						<img id="outputGraph">
+						<div id="predictionOutput">
 					</div>
 				</div>
 			</section>
