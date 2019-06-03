@@ -20,6 +20,7 @@
 
 					// Remove the previous output: predictions, graphs, explanations...
 					$("#outputGraph").attr('src', '');
+					$("#visualizationGraph").attr('src', '');
 					document.getElementById("predictionOutput").innerHTML = ""
 					document.getElementById("perWordProbs").innerHTML = ""
 
@@ -51,6 +52,7 @@
 
 							//Add the graph to the page
 							$("#outputGraph").attr('src',"https://s3.amazonaws.com/cse156finalproject/"+response+"_perwordgraph.png");
+							$("#visualizationGraph").attr('src',"https://s3.amazonaws.com/cse156finalproject/"+response+"_visualization.png");
 
 							//Add the contents of the prediction txt file to the page
 							var xhttp = new XMLHttpRequest();
@@ -135,7 +137,11 @@
 						<p id="outputTxt" style="display:inline"></p>
 						<br/>
 						<section><div id="predictionOutput"></section>
+						<br/><br/>
 						<img id="outputGraph">
+						<br/><br/><br/>
+						<img id="visualizationGraph">
+						<br/><br/><br/><br/>
 						<section><div id="perWordProbs"></section>
 					</div>
 				</div>
